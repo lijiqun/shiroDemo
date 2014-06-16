@@ -31,5 +31,11 @@ public class Role {
         this.name = name == null ? null : name.trim();
     }
 
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", code=" + code + ", name=" + name + "]";
+	}
+    
+    
     
 }
