@@ -67,11 +67,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		for(Role role:Roles){
 			roleNames.add(role.getCode());
 		}
-		System.out.println(roleNames.toString());
 	    Set<String> permissions = new HashSet<String>();//权限集合
-	    permissions.add("user:create");
-	    permissions.add("user:created");
-	    permissions.add("user:create");
+	    
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNames);
 	    info.setStringPermissions(permissions);
 	    System.out.println("authori>>>>>>>>>>>>>>>>>"+info);
