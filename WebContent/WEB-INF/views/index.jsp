@@ -62,5 +62,14 @@
 	<shiro:hasPermission name="user:create200" >  
 	    <a href="createUser.jsp">Create200000 a new User</a>  
 	</shiro:hasPermission>  
+	
+	<shiro:hasPermission name="user:create300" >  
+	    <a href="createUser.jsp">Create333333 a new User</a>  
+	</shiro:hasPermission>  
+	
+	
+	<shiro:hasPermission name="user:create400" >  
+	    <a href="createUser.jsp">Create444444 a new User</a>  
+	</shiro:hasPermission>  
 </body>
 </html>
