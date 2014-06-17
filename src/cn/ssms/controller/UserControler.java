@@ -52,6 +52,16 @@ public class UserControler {
 		return "login";
 	}
 	
+	@RequestMapping("/noperms")
+	public String noperms(){
+		return "error/noperms";
+	}
+	
+	@RequestMapping("/index")
+	public String index(){
+		return "index";
+	}
+	
 	/**
 	 * 登录示例
 	 * @param request

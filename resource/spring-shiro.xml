@@ -22,14 +22,15 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/tologin.html" />
-		<property name="successUrl" value="/view/index.html" />
-		<property name="unauthorizedUrl" value="/error/noperms.jsp" />
+		<property name="successUrl" value="/index.html" />
+		<property name="unauthorizedUrl" value="/noperms.html" />
 		<property name="filterChainDefinitions">
 			<value>
 				/index.html = authc
 				/login.html = anon
 				/tologin.html = anon
 				/logout.html = anon
+				/createUser.html = perms["user:create"]
 				/** = authc
 			</value>
 		</property>

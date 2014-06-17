@@ -1,7 +1,15 @@
 package cn.ssms.model;
 
-public class UserRole {
-    private Integer id;
+import java.io.Serializable;
+
+
+public class UserRole implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8439336458951992728L;
+
+	private Integer id;
 
     private Integer userId;
 

@@ -19,8 +19,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.ssms.model.Permission;
 import cn.ssms.model.Role;
 import cn.ssms.model.User;
+import cn.ssms.service.PermissionService;
 import cn.ssms.service.RoleService;
 import cn.ssms.service.UserService;
 
@@ -32,6 +34,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	private UserService userService;
 	@Autowired
 	private RoleService roleService;
+	@Autowired
+	private PermissionService permissionService;
 
 	public ShiroDbRealm() {
 		super();
@@ -63,15 +67,20 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		/* 这里编写授权代码 */
 		String loginName = (String) principals.fromRealm(getName()).iterator().next();//获取登陆的用户名
 		List<Role> Roles = this.roleService.queryUserRoleList(loginName);
+		List<Permission> permissions = this.permissionService.queryRolePermissionList(loginName);
+		this.permissionService.insertPermission();
 		Set<String> roleNames = new HashSet<String>();//角色集合
 		for(Role role:Roles){
 			roleNames.add(role.getCode());
 		}
-	    Set<String> permissions = new HashSet<String>();//权限集合
-	    
+	   Set<String> perms = new HashSet<String>();//权限集合
+	    for(Permission per:permissions){
+	    	perms.add(per.getCode());
+	    }
+	    System.out.println("角色列表："+Roles.toString());
+	    System.out.println("总共权限有： "+perms.size());
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNames);
-	    info.setStringPermissions(permissions);
-	    System.out.println("authori>>>>>>>>>>>>>>>>>"+info);
+		info.setStringPermissions(perms);
 		return info;
 	}
 
@@ -80,7 +89,6 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	public void clearCachedAuthorizationInfo(String principal) {
 		SimplePrincipalCollection principals = new SimplePrincipalCollection(principal, getName());
-		System.out.println("ddddd::::::::::::::clear");
 		clearCachedAuthorizationInfo(principals);
 	}
 

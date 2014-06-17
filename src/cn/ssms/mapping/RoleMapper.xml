@@ -5,4 +5,8 @@
  	<select id="queryUserRoleList" parameterType="java.lang.String"  resultType="cn.ssms.model.Role">
  		select id,code,name from role where id in(select roleId from userRole where userId=(select id from user where name=#{name}))
  	</select>
+ 	
+ 	<select id="queryRoleIdByUserId" parameterType="java.lang.String" resultType="cn.ssms.model.Role">
+ 		select id from role where id in(select roleId from userRole where userId=(select id from user where name=#{name}))
+ 	</select>
 </mapper>

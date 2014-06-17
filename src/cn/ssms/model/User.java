@@ -1,9 +1,14 @@
 package cn.ssms.model;
 
+import java.io.Serializable;
 import java.util.Date;
+public class User implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 191907594084527861L;
 
-public class User {
-    private Integer id;
+	private Integer id;
 
     private String name;
 

@@ -4,7 +4,11 @@ import cn.ssms.model.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
-
+/**
+ * 
+ * @param record
+ * @return
+ */
     int insert(User record);
 
     int insertSelective(User record);
