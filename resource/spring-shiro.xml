@@ -30,7 +30,7 @@
 				/login.html = anon
 				/tologin.html = anon
 				/logout.html = anon
-				/createUser.html = perms["user:create"]
+				/createUser.html = perms["user:createrr"]
 				/** = authc
 			</value>
 		</property>
