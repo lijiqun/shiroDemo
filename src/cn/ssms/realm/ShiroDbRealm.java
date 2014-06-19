@@ -53,7 +53,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		System.out.println(user);
 		if (user != null) {
 			System.out.println("coming............");
-			return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), getName());
+			return new SimpleAuthenticationInfo(user.getName(),"", getName());
 		}else{
 			throw new AuthenticationException();
 		}
@@ -66,6 +66,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		/* 这里编写授权代码 */
 		String loginName = (String) principals.fromRealm(getName()).iterator().next();//获取登陆的用户名
+		System.out.println("loginName>>>>>>>>>>>"+loginName);
 		List<Role> Roles = this.roleService.queryUserRoleList(loginName);
 		List<Permission> permissions = this.permissionService.queryRolePermissionList(loginName);
 		this.permissionService.insertPermission();

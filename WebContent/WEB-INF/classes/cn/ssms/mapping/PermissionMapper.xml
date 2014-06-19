@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ssms.dao.PermissionMapper" >
+ 	<!-- 查找角色的权限 -->
+ 	<select id="queryRolePermissionList" parameterType="list"  resultType="cn.ssms.model.Permission">
+ 		select DISTINCT id,code,name from permission where id in 
+ 		(select permissionId from rolePermission where roleId in
+ 			<foreach collection="list" item="roleIds" open="(" separator="," close=")">
+ 				#{roleIds.id,jdbcType=NUMERIC}
+ 			</foreach>
+ 		)
+ 	</select>
+ 	
+ 	<insert id="insertPermission" useGeneratedKeys="true" keyProperty="id"  parameterType="cn.ssms.model.Permission">
+ 		insert into permission(code,name) values(#{code},#{name})
+ 	</insert>
+ 	
+</mapper>

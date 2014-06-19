@@ -75,7 +75,17 @@ public class UserControler {
 		//MD5加密
 		String password = CipherUtil.generatePassword(request.getParameter("password"));
 		//String password = request.getParameter("password");
-		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+		UsernamePasswordToken token = new UsernamePasswordToken(username, "");
+		Subject currentUser = SecurityUtils.getSubject();
+		try {
+			currentUser.login(token);
+			result = "index";
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			// TODO: handle exception
+		}
+		
+	/*	UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
@@ -84,11 +94,10 @@ public class UserControler {
 				currentUser.login(token);
 			}
 			
-			result = "index";
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			result = "login";
-		}
+		}*/
 		System.out.println("result: " + result);
 		return result;
 	}

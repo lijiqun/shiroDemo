@@ -23,9 +23,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis-spring-1.1.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.21.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api-3.0-alpha-1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-core-1.2.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-spring-1.2.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-web-1.2.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.6.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aop-3.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-beans-3.2.0.RELEASE.jar"/>
