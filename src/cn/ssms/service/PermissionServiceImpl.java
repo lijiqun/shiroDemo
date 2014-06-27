@@ -10,7 +10,6 @@ import cn.ssms.dao.RoleMapper;
 import cn.ssms.dao.RolePermissionMapper;
 import cn.ssms.model.Permission;
 import cn.ssms.model.Role;
-import cn.ssms.model.RolePermission;
 
 /**
 	author:lijiqun

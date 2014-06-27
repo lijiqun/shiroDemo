@@ -3,7 +3,7 @@ package cn.ssms.util;
 import java.security.MessageDigest;
 
 /**
- * 
+ * md5加密
  */
 public class CipherUtil {
 
@@ -82,14 +82,13 @@ public class CipherUtil {
 	public static void main(String[] args) {
 		String pwd1 = "admin";
 		String pwd2 = "";
-		CipherUtil cipher = new CipherUtil();
 		System.out.println("加密前:" + pwd1);
 		
-		pwd2 = cipher.generatePassword(pwd1);
+		pwd2 = generatePassword(pwd1);
 		System.out.println("加密后:" + pwd2);
 
 		System.out.print("验证:");
-		if (cipher.validatePassword(pwd2, "admin")) {
+		if (validatePassword(pwd2, "admin")) {
 			System.out.println("正确");
 		} else {
 			System.out.println("错误");

@@ -25,9 +25,10 @@ import cn.ssms.model.User;
 import cn.ssms.service.PermissionService;
 import cn.ssms.service.RoleService;
 import cn.ssms.service.UserService;
+import cn.ssms.util.LogUtil;
 
 public class ShiroDbRealm extends AuthorizingRealm {
-	private static Logger logger = LoggerFactory.getLogger(ShiroDbRealm.class);
+	//private static  Logger logger = LoggerFactory.getLogger(ShiroDbRealm.class);
 	private static final String ALGORITHM = "MD5";
 	
 	@Autowired
@@ -53,7 +54,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		System.out.println(user);
 		if (user != null) {
 			System.out.println("coming............");
-			return new SimpleAuthenticationInfo(user.getName(),"", getName());
+			return new SimpleAuthenticationInfo(user.getName(),user.getPassword(), getName());
 		}else{
 			throw new AuthenticationException();
 		}
@@ -66,7 +67,6 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		/* 这里编写授权代码 */
 		String loginName = (String) principals.fromRealm(getName()).iterator().next();//获取登陆的用户名
-		System.out.println("loginName>>>>>>>>>>>"+loginName);
 		List<Role> Roles = this.roleService.queryUserRoleList(loginName);
 		List<Permission> permissions = this.permissionService.queryRolePermissionList(loginName);
 		this.permissionService.insertPermission();
@@ -78,8 +78,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	    for(Permission per:permissions){
 	    	perms.add(per.getCode());
 	    }
-	    System.out.println("角色列表："+Roles.toString());
-	    System.out.println("总共权限有： "+perms.size());
+	    LogUtil.getSohoLogger().info("角色列表："+Roles.toString());
+	    LogUtil.getSohoLogger().info("总共权限有： "+perms.size());
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNames);
 		info.setStringPermissions(perms);
 		return info;

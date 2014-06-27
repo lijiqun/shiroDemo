@@ -75,7 +75,7 @@ public class UserControler {
 		//MD5加密
 		String password = CipherUtil.generatePassword(request.getParameter("password"));
 		//String password = request.getParameter("password");
-		UsernamePasswordToken token = new UsernamePasswordToken(username, "");
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
 			currentUser.login(token);
